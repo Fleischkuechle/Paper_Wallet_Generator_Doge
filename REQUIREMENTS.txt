@@ -18,3 +18,6 @@ urllib3==2.2.3
 fpdf2
 pywin32
 PyMuPDF
+
+
+qrcode[pil]
