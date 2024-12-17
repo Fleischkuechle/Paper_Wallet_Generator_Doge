@@ -10,6 +10,7 @@ this is how it looks like:
 how to use:
 clone the repo using this command(because it has sub modules):
 (git clone --recurse-submodules <main-repo-url>)
+
 git clone --recurse-submodules https://github.com/Fleischkuechle/Paper_Wallet_Generator_Doge.git
 
 First you need to install the requirements from requrements.txt on your python 3.10 environment.
