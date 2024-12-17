@@ -1,0 +1,8 @@
+[submodule "coin_utils"]
+    path = coin_utils
+    url = https://github.com/Fleischkuechle/coin_utils.git
+
+[submodule "pdf_utils"]
+    path = pdf_utils
+    url = https://github.com/Fleischkuechle/pdf_utils.git
+
