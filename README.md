@@ -34,3 +34,8 @@ Update:
 Added a save pub qr as image button that saves the qr code as a image file
 
 ![alt text](Paper_Wallet_Generator02.png)
+
+
+this is how the pdf will look like:
+
+[text](pdf_utils/logos/DQMj2kFEjkCie5eyU7MhJi6mtySqauLpj8.pdf)
