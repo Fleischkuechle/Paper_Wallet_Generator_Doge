@@ -5,6 +5,7 @@ This app is meant to be used on an offline Windows computer
 
 
 this is how it looks like:
+
 ![alt text](Paper_Wallet_Generator01.png)
 
 how to use:
