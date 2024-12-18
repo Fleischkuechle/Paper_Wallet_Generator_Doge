@@ -1,15 +1,11 @@
-import os
 from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 import fitz  # PyMuPDF
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.image import Image
-from kivy.graphics import Color
 from kivy.graphics.texture import Texture
-from kivy.uix.label import Label
 from kivy.core.window import Window
-from kivy.graphics import Color, Rectangle
 from kivy.uix.textinput import TextInput
 from Paper_Wallet_Generator_Helper import Paper_Wallet_Generator_Helper
 
@@ -45,6 +41,14 @@ class Paper_Wallet_Generator_ui(Screen):
             size_hint=(1, 1),
         )
         self.save_pdf_btn.bind(on_press=self.save_pdf)
+
+        # setup save_pub_qr_as_img_btn
+        self.save_pub_qr_as_img_text: str = "save pub qr as image"
+        self.save_pub_qr_as_img_btn = Button(
+            text=f"{self.save_pub_qr_as_img_text}",
+            size_hint=(1, 1),
+        )
+        self.save_pub_qr_as_img_btn.bind(on_press=self.save_pub_qr_as_img)
         # setup image widged(for showing the paper wallet)
         self.image_widget: Image = Image()
         self.image_widget.pos_hint = {"center_x": 0.5, "center_y": 0.5}
@@ -58,6 +62,7 @@ class Paper_Wallet_Generator_ui(Screen):
         self.btns_box.add_widget(self.print_wallet_btn)
         self.btns_box.add_widget(self.generate_wallet_btn)
         self.btns_box.add_widget(self.save_pdf_btn)
+        self.btns_box.add_widget(self.save_pub_qr_as_img_btn)
 
         # Create a TextInput for terminal output
         self.terminal_output_height: float = 200
@@ -102,13 +107,27 @@ class Paper_Wallet_Generator_ui(Screen):
         path: str = ""
         is_saved, path = self.paper_wallet_generator_helper.save_as_pdf()
         dotted_line: str = "-" * 40
-        terminal_message: str = f"""{dotted_line}
+        message: str = f"""{dotted_line}
 Is pdf saved:{is_saved}"""
-
-        self.update_terminal(message=terminal_message)
-        terminal_message = f"""PDF Path:{path}
+        self.update_terminal(message=message)
+        message = f"""PDF Path:
+{path}
 {dotted_line}"""
-        self.update_terminal(message=terminal_message)
+        self.update_terminal(message=message)
+
+    def save_pub_qr_as_img(self, instance):
+        is_saved: bool = False
+        path: str = ""
+        is_saved, path = self.paper_wallet_generator_helper.save_pub_qr_as_img()
+        dotted_line: str = "-" * 40
+        message: str = f"""{dotted_line}
+Is Image saved: ?={is_saved}"""
+        self.update_terminal(message=message)
+        message = f"""Image Path:
+{path}
+{dotted_line}"""
+
+        self.update_terminal(message=message)
 
     def update_terminal_info(
         self,

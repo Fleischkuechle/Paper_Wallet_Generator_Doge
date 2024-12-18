@@ -27,3 +27,9 @@ After you printed it you can cut out the paper wallet
 then fold it on the horizontal fold line so that the printed areas are still visible.
 then fold the alien image so it covers the private key qr code
 then fold the public key qr code above so nobody can see your private key.
+
+
+Update:
+Added a save pub qr as image button that saves the qr code as a image file
+
+![alt text](Paper_Wallet_Generator02.png)

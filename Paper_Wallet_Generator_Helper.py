@@ -53,7 +53,7 @@ class Paper_Wallet_Generator_Helper:
         self.pix_map = self.pdf_helper.get_current_pixmap()
         return self.pdf_document
 
-    def save_paralell(
+    def save_paralell_pdf(
         self,
     ) -> tuple[bool, str]:
         is_saved: bool = False
@@ -62,6 +62,18 @@ class Paper_Wallet_Generator_Helper:
         path = os.path.join(folder_path, self.pub_address + ".pdf")
         # self.pdf_document.save_snapshot(filename=path)
         self.pdf_document.save(filename=path)
+        is_saved = True
+        return is_saved, path
+
+    def save_paralell_pub_qr_png(
+        self,
+    ) -> tuple[bool, str]:
+        is_saved: bool = False
+        path: str = ""
+        folder_path: str = os.path.dirname(__file__)
+        path = os.path.join(folder_path, self.pub_address + ".png")
+        self.pub_address_qr_img.save(fp=path)
+
         is_saved = True
         return is_saved, path
 
@@ -77,9 +89,26 @@ class Paper_Wallet_Generator_Helper:
                 is_saved = True
                 return is_saved, path
             else:
-                is_saved, path = self.save_paralell()
+                is_saved, path = self.save_paralell_pdf()
         else:
-            is_saved, path = self.save_paralell()
+            is_saved, path = self.save_paralell_pdf()
+
+        return is_saved, path
+
+    def save_pub_qr_as_img(self, folder_path: str = "") -> tuple[bool, str]:
+        is_saved: bool = False
+        path: str = ""
+        if folder_path != "":
+            # directory_path:str = os.path.dirname(folder_path)
+            if os.path.exists(path=folder_path):
+                path = os.path.join(folder_path, self.pub_address + ".pdf")
+                self.pub_address_qr_img.save(fp=path)
+                is_saved = True
+                return is_saved, path
+            else:
+                is_saved, path = self.save_paralell_pub_qr_png()
+        else:
+            is_saved, path = self.save_paralell_pub_qr_png()
 
         return is_saved, path
 
